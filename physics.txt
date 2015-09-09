@@ -1,0 +1,19 @@
+//physics will be used on the bullets, the plane, the monster, and the air coming from the fans
+//the air coming from the fans will affect the flight of the plane
+
+//the equations for the physics of the plane were given in class on 9/7/15
+// location = 1/2 (acceleration) * (time elapsed)^2 + velocity * (time elapsed) + starting location
+// velocity = starting velocity + (accelaration) * (time elapsed)
+
+//the monster will have a constant max velocity that will be reached when it is traveling straight for a long enough period
+//the monster will have a set acceleration to reach the max velocity
+
+//the bullets will have a set velocity
+// the equation for the monster and bullet are:
+// location = velocity * (time elapsed) + starting location
+
+//graviy will affect the plane when the user "dives" or "climbs"
+//the gravitational pull will be -10 meters per second^2
+
+//the air from the fans will give the plane lift and will temporarily increase velocity
+//the ammount the air will increase the planes velocity will be determined by a trial and error method
