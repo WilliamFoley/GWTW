@@ -16,7 +16,7 @@ public:
 void didYouWin (Object whatYouCollidedWith)
 {
   // if the collision is with the final pad, they WIN
-  // else the collision is ith any other object, they LOSE
+  // else the collision is with any other object, they LOSE
 }
 
 };
