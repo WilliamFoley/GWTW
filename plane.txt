@@ -1,0 +1,2 @@
+texture - https://www.dropbox.com/s/aghceifwf3f0kur/looseleaf.png?dl=0
+model - https://www.dropbox.com/s/hkfj79jiv9yf7jt/testairplane.obj?dl=0
