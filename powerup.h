@@ -25,19 +25,33 @@ class PowerUp : public Object
 {
 public:
 	// The default constructors inherits from Object
-	PowerUp() : animated_(true), Object() {};
-	PowerUp(const PowerUp& other) : animated_(other.animated_), Object(other) {};
-	PowerUp(const Object& other) : animated_(true), Object(other) {};
+	PowerUp() : animated_(true), Object() {}
+	PowerUp(IVideoDriver* driver, ISceneManager* smgr, const char* meshName, const char* textureName,
+		const char* soundName, vector3d<f32> position, vector3d<f32> rotation, vector3d<f32> scale) : animated_(true),
+		Object(driver, smgr, meshName, textureName, soundName, position, rotation, scale)
+	{
+		if (correctMeshTextureSound() == false)
+		{
+			setRightMesh(correctMesh_);
+			setRightSound(correctSound_);
+			changeTexture(correctTexture_);
+		}
+	}
+	PowerUp(const PowerUp& other) : animated_(other.animated_), Object(other) {}
+	PowerUp(const Object& other) : animated_(true), Object(other) {}
 
 	bool correctMeshTextureSound()
 	{
 		// call the three access functions
 		// check to see if the mesh, the sound, and the texture are correct for class
+		return correctMesh_ == getMeshName() && correctSound_ == getSoundName() && correctTexture_ == getTextureName();
+
 	}
 
 	bool isAnimated()
 	{
-		// checks to see if the fan is on or off
+		// checks to see if the power up is moving
+		return animated_ == true;
 	}
 
 	void animate()
@@ -59,7 +73,17 @@ public:
 		//that powerup is readied for use
 	}
 
-private:
+	~PowerUp()
+	{
+		delete[] correctMesh_;
+		delete[] correctSound_;
+		delete[] correctTexture_;
+	}
 
+private:
 	bool animated_;
+	// These will eventually need to change to the correct path
+	const char* correctMesh_ = "C:/Users/Emma/Documents/Visual Studio 2013/Projects/irrlichtTest/irrlichtTest/media/powerup.obj";
+	const char* correctSound_ = "None";
+	const char* correctTexture_ = "C:/Users/Emma/Documents/Visual Studio 2013/Projects/irrlichtTest/irrlichtTest/media/randompowerup.png";
 };
