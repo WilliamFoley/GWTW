@@ -1,0 +1,5 @@
+https://www.dropbox.com/s/oy3g9tlvmtqdnm5/powerup.obj?dl=0 - model
+https://www.dropbox.com/s/mgop4v7xuuw65r2/ammo.png?dl=0 - ammo texture
+https://www.dropbox.com/s/gao3wn6hgi3z61u/randompowerup.png?dl=0 - random texture
+https://www.dropbox.com/s/m1nnavfdvtsjsj5/shield.png?dl=0 - shield texture
+https://www.dropbox.com/s/jhq3muu35pjbotz/turbo.png?dl=0 - turbo texture
