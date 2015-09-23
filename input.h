@@ -1,3 +1,8 @@
+//Shawn Cherry
+//Cs 365
+//Fall 2015
+//Gone With the Wind
+
 #include <irrlicht.h>
 #include "driverChoice.h"
 
@@ -12,13 +17,13 @@ public:
 	struct SMouseState
 	{
 		//Saves the state of all of the mouse functions.
-		core::position2di Position;  	//Mouse Position
-		bool LeftButtonDown;			    //Mouse Left button state
-		bool RightButtonDown;			    //Mouse Right button state
+		core::position2di Position;  		//Mouse Position
+		bool LeftButtonDown;			//Mouse Left button state
+		bool RightButtonDown;			//Mouse Right button state
 		bool MiddleMouseButtonDown;		//Mouse Middle button state
-		float MouseWheel;			      	//Mouse wheel state
-		bool mouseWheelUp;			    	//Mouse wheel going up state
-		bool mouseWheelDown;			    //Mouse wheel going down state
+		float MouseWheel;			//Mouse wheel state
+		bool mouseWheelUp;			//Mouse wheel going up state
+		bool mouseWheelDown;			//Mouse wheel going down state
 
 		//SETS THE DEFAULTS FOR THE STRUCT
 		SMouseState() : LeftButtonDown(false), RightButtonDown(false), 
