@@ -24,7 +24,7 @@ class Object //This is the main class that all will inherit from in some way
 {
 public:
 	// Default constructor - sets the variables to either "" or an empty vector
-	Object();
+	Object() {}
 
 	// Asks for a meshName, a textureName, a soundName, position, rotation, scale
 	Object(IVideoDriver* driver, ISceneManager* smgr, const char* meshName, const char* textureName, 
@@ -39,37 +39,9 @@ public:
 		rotation_(other.rotation_), scale_(other.scale_) {}
 
 	// Deconstructor
-	~Object() 
-	{
-		delete[] meshName_;
-		delete[] textureName_;
-		delete[] soundName_;
-	}
+	~Object();
 
-	void createNode()
-	{
-		// The smgr uses the meshName to create the mesh
-		// Then it adds it to the scene
-		mesh_ = smgr_->getMesh(meshName_);
-		/*if (!mesh_)
-		{
-			device_->drop();
-			return 1;
-		}*/
-		node_ = smgr_->addAnimatedMeshSceneNode(mesh_);
-
-		// If (node)
-		// set texture, sound, position, rotation & scale
-		if (node_)
-		{
-			node_->setMaterialFlag(EMF_LIGHTING, false);
-			node_->setMaterialTexture(0, driver_->getTexture(textureName_));
-			node_->setPosition(position_);
-			node_->setScale(scale_);
-			node_->setRotation(rotation_);
-		}
-
-	}
+	void createNode();
 
 	// Items which deal with collisions
 	enum LEVEL_OF_INTERACTIVITY{ ID_AQUIRABLE = 1, ID_INTERACTABLE, ID_NONINTERACTABLE, ACTIVATABLE, NONE };
@@ -80,145 +52,70 @@ public:
 	}
 	
 
-	void physics()
-	{
-		// Functions to create the physics for the objects
-	}
+	void physics();
 
 	// Functions to change
 	//		mesh - only can be done before the node is created
-	void setRightMesh(const char* newMesh)
-	{
-		meshName_ = newMesh;
-	}
+	void setRightMesh(const char* newMesh);
+
 	//		sound
-	void setRightSound(const char* newSound)
-	{
-		soundName_ = newSound;
-	}
+	void setRightSound(const char* newSound);
+
 	//		texture
-	void changeTexture(const char* newTexture)
-	{
-		textureName_ = newTexture;
-		if (node_)
-		{
-			node_->setMaterialTexture(0, driver_->getTexture(textureName_));
-		}
-	}
+	void changeTexture(const char* newTexture);
+
 	//		position by just floats
-	void changePosition(float newPX, float newPY, float newPZ)
-	{
-		// Replaces the floats in the related vector with the new numbers
-		position_ = vector3df(newPX, newPY, newPZ);
-		if (node_)
-		{
-			node_->setPosition(position_);
-		}
-	}
+	void changePosition(float newPX, float newPY, float newPZ);
+
 	//		position by a vector
-	void changePosition(vector3d<f32> newPosition)
-	{
-		// Replaces the floats in the related vector with the new numbers
-		position_ = newPosition;
-		if (node_)
-		{
-			node_->setPosition(position_);
-		}
-	}
+	void changePosition(vector3d<f32> newPosition);
+
 	//		rotation by just floats
-	void changeRotation(float newRX, float newRY, float newRZ)
-	{
-		// Replaces the floats in the related vector with the new numbers
-		rotation_ = vector3df(newRX, newRY, newRZ);
-		if (node_)
-		{
-			node_->setRotation(rotation_);
-		}
-	}
+	void changeRotation(float newRX, float newRY, float newRZ);
+
 	//		rotation by a vector
-	void changeRotation(vector3d<f32> newRotation)
-	{
-		// Replaces the floats in the related vector with the new numbers
-		rotation_ = newRotation;
-		if (node_)
-		{
-			node_->setRotation(rotation_);
-		}
-	}
+	void changeRotation(vector3d<f32> newRotation);
+
 	// change velocity by just floats
-	void changeVelocity(float newVX, float newVY, float newVZ)
-	{
-		velocity_ = vector3df(newVX, newVY, newVZ);
-	}
+	void changeVelocity(float newVX, float newVY, float newVZ);
+
 	// change velocity by a vector
-	void changeVelocity(vector3d<f32> newVelocity)
-	{
-		velocity_ = newVelocity;
-	}
+	void changeVelocity(vector3d<f32> newVelocity);
+
 	// change acceleration by just floats
-	void changeAcceleration(float newAX, float newAY, float newAZ)
-	{
-		acceleration_ = vector3df(newAX, newAY, newAZ);
-	}
+	void changeAcceleration(float newAX, float newAY, float newAZ);
+
 	// change acceleration by a vector
-	void changeAcceleration(vector3d<f32> newAcceleration)
-	{
-		acceleration_ = newAcceleration;
-	}
+	void changeAcceleration(vector3d<f32> newAcceleration);
 
 	// Functions to access and return the
 	//		Mesh
-	IAnimatedMeshSceneNode* getNode()
-	{
-		return node_;
-	}
+	IAnimatedMeshSceneNode* getNode();
+
 	//		Mesh Name
-	const char* getMeshName()
-	{
-		return meshName_;
-	}
+	const char* getMeshName();
+
 
 	//		Texture Name
-	const char*  getTextureName()
-	{
-		return textureName_;
-	}
+	const char*  getTextureName();
 
 	//		Sound Name
-	const char*  getSoundName()
-	{
-		return soundName_;
-	}
+	const char*  getSoundName();
 
 	//		Position
-	vector3d<f32> getPosition()
-	{
-		return position_;
-	}
+	vector3d<f32> getPosition();
 
 	//		Rotation
-	vector3d<f32> getRotation()
-	{
-		return rotation_;
-	}
+	vector3d<f32> getRotation();
 
 	//		Scale
-	vector3d<f32> getScale()
-	{
-		return scale_;
-	}
+	vector3d<f32> getScale();
 
 	//		Velocity
-	vector3d<f32> getVelocity()
-	{
-		return velocity_;
-	}
+	vector3d<f32> getVelocity();
 
 	//		Acceleration
-	vector3d<f32> getAcceleration()
-	{
-		return acceleration_;
-	}
+	vector3d<f32> getAcceleration();
 
 private:
 	// Variables for
@@ -255,3 +152,4 @@ private:
 		//each class will inherit an addional data member called LEVEL_OF_INTERACTIVITY
 		//this will determine what happens to both objects if they collide
 };
+
