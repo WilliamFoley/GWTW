@@ -28,34 +28,15 @@ public:
 	Plane() : Object() {}
 	// A plane takes in a velocity & acceleration
 	Plane(IVideoDriver* driver, ISceneManager* smgr, const char* meshName, const char* textureName,
-		const char* soundName, vector3d<f32> position, vector3d<f32> rotation, vector3d<f32> scale, 
-		vector3d<f32> velocity, vector3d<f32> acceleration) :
-		Object(driver, smgr, meshName, textureName, soundName, position, rotation, scale) 
-	{
-		changeAcceleration(acceleration);
-		changeVelocity(velocity);
-		if (correctMeshTextureSound() == false)
-		{
-			setRightMesh(correctMesh_);
-			setRightSound(correctSound_);
-			changeTexture(correctTexture_);
-		}
-	}
+		const char* soundName, vector3d<f32> position, vector3d<f32> rotation, vector3d<f32> scale,
+		vector3d<f32> velocity, vector3d<f32> acceleration, vector2d<f32> pitch);
 
 	Plane(const Plane& other) : Object(other) {}
 	Plane(const Object& other) : Object(other) {}
 
-	bool correctMeshTextureSound()
-  	{
-		// call the three access functions
-		// check to see if the mesh, the sound, and the texture are correct for class
-		return correctMesh_ == getMeshName() && correctSound_ == getSoundName() && correctTexture_ == getTextureName();	
-	}
+	bool correctMeshTextureSound();
 
-	void physics()
-	{
-		// Functions to create the physics for the objects
-	}
+	void physics();
 
 
 	LEVEL_OF_INTERACTIVITY level_ = ID_INTERACTABLE;
@@ -68,14 +49,10 @@ public:
 		//plane is destroyed
 	}
 
-	~Plane()
-	{
-		delete[] correctMesh_;
-		delete[] correctSound_;
-		delete[] correctTexture_;
-	}
+	~Plane();
 
 private:
+	vector2d<f32> pitch_;
 
 	// These will eventually need to change to the correct path
 	const char* correctMesh_ = "C:/Users/Emma/Documents/Visual Studio 2013/Projects/irrlichtTest/irrlichtTest/media/testairplane.obj";
