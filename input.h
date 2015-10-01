@@ -3,7 +3,6 @@
 //Fall 2015
 //This is the movement class
 
-
 #include <irrlicht.h>
 #include "driverChoice.h"
 #pragma once

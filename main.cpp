@@ -18,7 +18,6 @@
 #include "driverChoice.h"
 #include "input.h"
 #include "movement.h"
-#include "object.h"
 
 using namespace irr;
 
@@ -37,23 +36,36 @@ int main()
 
 	// create device
 	Myinput receiver;
+
+	//create a joystickInfo array to store joy buttons
 	array<SJoystickInfo> joystickInfo;
+
+	//Create an Irrlicht device to run our program with
 	IrrlichtDevice* device = createDevice(driverType, core::dimension2d<u32>(800, 720), 32, false, false, false, &receiver);
 
+	//If device failed.
 	if (device == 0)
-		return 1; // could not create selected driver.
+		return EXIT_FAILURE; // could not create selected driver.
 
+	//Create movement, **this would be changed to the world class later 
 	movement movement(receiver, joystickInfo, device);
+
+	//Create a video display Driver
 	video::IVideoDriver* driver = device->getVideoDriver();
+	
+	//Create a scene manager for the objects and camera
 	scene::ISceneManager* smgr = device->getSceneManager();
 
-
+	//adds a camera to the scene
 	smgr->addCameraSceneNode(0, vector3df(0, 30, -40), vector3df(0, 5, 0));
 
+	//Detects plugged in joysticks.
 	movement.detectJoy();
+
 	//Main Game Loop
 	while (device->run())
 	{
+		//Detect movement and inputs
 		movement.detectInput();
 
 		driver->beginScene(true, true, SColor(100, 70, 70, 70));
