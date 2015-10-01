@@ -1,3 +1,8 @@
+//Shawn Cherry
+//CS 365
+//Fall 2015
+//This is the movement class
+
 #include <cstdlib>
 #include <irrlicht.h>
 #include "input.h"
@@ -116,12 +121,15 @@ void movement::detectInput()
 	const SEvent::SJoystickEvent & joystickData2 = (*input_).GetJoystickState2();
 	const SEvent::SJoystickEvent & joystickData3 = (*input_).GetJoystickState3();
 	const SEvent::SJoystickEvent & joystickData4 = (*input_).GetJoystickState4();
+	
 	if (joyConnected_)
 		if ((f32)joystickData1.Axis[SEvent::SJoystickEvent::AXIS_X] != -1)
 			std::cout << "Stick's X axis is moving.";
-		else if ((f32)joystickData1.Axis[SEvent::SJoystickEvent::AXIS_Y] != -1)
+		if ((f32)joystickData1.Axis[SEvent::SJoystickEvent::AXIS_Y] != -1)
 			std::cout << "Stick's Y axis is moving.";
-
+		for (f32 i = (f32)joystickData1.NUMBER_OF_BUTTONS; i >= 0; --i)
+			if ((f32)joystickData1.IsButtonPressed(i))
+				std::cout << "button " << i << " is pressed. " << endl;
 	(*input_).resetMouse();
 }
 

@@ -236,6 +236,30 @@
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Release|x64'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
+    <ClCompile Include="object.cpp" />
+    <ClCompile Include="plane.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="ammo.h" />
+    <ClInclude Include="bullet.h" />
+    <ClInclude Include="chair.h" />
+    <ClInclude Include="desk.h" />
+    <ClInclude Include="fan.h" />
+    <ClInclude Include="GameEnd.h" />
+    <ClInclude Include="Hud.h" />
+    <ClInclude Include="input.h" />
+    <ClInclude Include="landingpad.h" />
+    <ClInclude Include="lightfixture.h" />
+    <ClInclude Include="monster.h" />
+    <ClInclude Include="movement.h" />
+    <ClInclude Include="object.h" />
+    <ClInclude Include="plane.h" />
+    <ClInclude Include="powerup.h" />
+    <ClInclude Include="scenery.h" />
+    <ClInclude Include="shield.h" />
+    <ClInclude Include="Sound.h" />
+    <ClInclude Include="switch.h" />
+    <ClInclude Include="turbo.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
