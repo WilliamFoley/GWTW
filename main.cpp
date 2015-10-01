@@ -18,6 +18,7 @@
 #include "driverChoice.h"
 #include "input.h"
 #include "movement.h"
+#include <ctime>
 
 using namespace irr;
 
@@ -62,9 +63,16 @@ int main()
 	//Detects plugged in joysticks.
 	movement.detectJoy();
 
+
+	//Testing out a FPS limit
+	u32 startTime;
+	u32 endTime;
+	u32 lockFPS = 1000 / 30; //Locks to 30 FPS; denominator = wanted FPS
+
 	//Main Game Loop
 	while (device->run())
 	{
+		startTime = device->getTimer()->getTime();
 		//Detect movement and inputs
 		movement.detectInput();
 
@@ -73,6 +81,10 @@ int main()
 		smgr->drawAll();
 		device->getGUIEnvironment()->drawAll();
 		driver->endScene();
+
+		endTime = device->getTimer()->getTime();
+		if ((endTime - startTime) < lockFPS)
+			device->sleep(lockFPS - (endTime - startTime));
 	}
 	device->drop();
 	return EXIT_SUCCESS;
