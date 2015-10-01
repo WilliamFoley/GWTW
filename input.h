@@ -1,7 +1,4 @@
-//Shawn Cherry
-//Cs 365
-//Fall 2015
-//Gone With the Wind
+#pragma once
 
 #include <irrlicht.h>
 #include "driverChoice.h"
@@ -10,19 +7,19 @@
 using namespace irr;
 
 
-class input : public IEventReceiver
+class Myinput : public IEventReceiver
 {
 public:
 	// We'll create a struct to record info on the mouse state
 	struct SMouseState
 	{
 		//Saves the state of all of the mouse functions.
-		core::position2di Position;  		//Mouse Position
+		core::position2di Position;  	//Mouse Position
 		bool LeftButtonDown;			//Mouse Left button state
 		bool RightButtonDown;			//Mouse Right button state
 		bool MiddleMouseButtonDown;		//Mouse Middle button state
-		float MouseWheel;			//Mouse wheel state
-		bool mouseWheelUp;			//Mouse wheel going up state
+		float MouseWheel;				//Mouse wheel state
+		bool mouseWheelUp;				//Mouse wheel going up state
 		bool mouseWheelDown;			//Mouse wheel going down state
 
 		//SETS THE DEFAULTS FOR THE STRUCT
@@ -116,9 +113,23 @@ public:
 		if (event.EventType == irr::EET_JOYSTICK_INPUT_EVENT
 			&& event.JoystickEvent.Joystick == 0)
 		{
-			JoystickState = event.JoystickEvent;
+			JoystickState1 = event.JoystickEvent;
 		}
-
+		else if (event.EventType == irr::EET_JOYSTICK_INPUT_EVENT
+			&& event.JoystickEvent.Joystick == 1)
+		{
+			JoystickState1 = event.JoystickEvent;
+		}
+		else if (event.EventType == irr::EET_JOYSTICK_INPUT_EVENT
+			&& event.JoystickEvent.Joystick == 2)
+		{
+			JoystickState1 = event.JoystickEvent;
+		}
+		else if (event.EventType == irr::EET_JOYSTICK_INPUT_EVENT
+			&& event.JoystickEvent.Joystick == 3)
+		{
+			JoystickState1 = event.JoystickEvent;
+		}
 		return false;
 		//TODO:::: Add the events for Joysticks
 	}
@@ -136,9 +147,21 @@ public:
 		return KeyIsDown[keyCode];
 	}
 	//Gets the joystick state
-	const SEvent::SJoystickEvent & GetJoystickState(void) const
+	const SEvent::SJoystickEvent & GetJoystickState1(void) const
 	{
-		return JoystickState;
+		return JoystickState1;
+	}
+	const SEvent::SJoystickEvent & GetJoystickState2(void) const
+	{
+		return JoystickState2;
+	}	
+	const SEvent::SJoystickEvent & GetJoystickState3(void) const
+	{
+		return JoystickState3;
+	}	
+	const SEvent::SJoystickEvent & GetJoystickState4(void) const
+	{
+		return JoystickState4;
 	}
 	//Gets the mouse state
 	const SMouseState & GetMouseState(void) const
@@ -147,13 +170,16 @@ public:
 	}
 
 	//tells us which keys are being pressed down
-	input()
+	Myinput()
 	{
 		for (u32 i = 0; i<KEY_KEY_CODES_COUNT; ++i)
 			KeyIsDown[i] = false;
 	}
 
 private:
-	SEvent::SJoystickEvent JoystickState;
+	SEvent::SJoystickEvent JoystickState1;
+	SEvent::SJoystickEvent JoystickState2;
+	SEvent::SJoystickEvent JoystickState3;
+	SEvent::SJoystickEvent JoystickState4;
 	bool KeyIsDown[KEY_KEY_CODES_COUNT];
 };
