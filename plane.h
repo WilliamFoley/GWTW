@@ -29,14 +29,24 @@ public:
 	// A plane takes in a velocity & acceleration
 	Plane(IVideoDriver* driver, ISceneManager* smgr, const char* meshName, const char* textureName,
 		const char* soundName, vector3d<f32> position, vector3d<f32> rotation, vector3d<f32> scale,
-		vector3d<f32> velocity, vector3d<f32> acceleration, vector2d<f32> pitch);
+		vector3d<f32> velocity, vector3d<f32> acceleration, vector3d<f32> pitch);
 
 	Plane(const Plane& other) : Object(other) {}
 	Plane(const Object& other) : Object(other) {}
 
 	bool correctMeshTextureSound();
 
-	void physics();
+	vector3d<f32> getPitch();
+
+	void updatePosition(float time);
+
+	void updateVelocity(float time);
+
+	void updateAccelceration();
+
+	void updatePitch();
+
+	void physics(float time);
 
 
 	LEVEL_OF_INTERACTIVITY level_ = ID_INTERACTABLE;
@@ -52,7 +62,7 @@ public:
 	~Plane();
 
 private:
-	vector2d<f32> pitch_;
+	vector3d<f32> pitch_;
 
 	// These will eventually need to change to the correct path
 	const char* correctMesh_ = "C:/Users/Emma/Documents/Visual Studio 2013/Projects/irrlichtTest/irrlichtTest/media/testairplane.obj";

@@ -25,7 +25,7 @@ using namespace gui;
 	// A plane takes in a velocity & acceleration
 	Plane::Plane(IVideoDriver* driver, ISceneManager* smgr, const char* meshName, const char* textureName,
 		const char* soundName, vector3d<f32> position, vector3d<f32> rotation, vector3d<f32> scale,
-		vector3d<f32> velocity, vector3d<f32> acceleration, vector2d<f32> pitch) : pitch_(pitch),
+		vector3d<f32> velocity, vector3d<f32> acceleration, vector3d<f32> pitch) : pitch_(pitch),
 		Object(driver, smgr, meshName, textureName, soundName, position, rotation, scale)
 	{
 		changeAcceleration(acceleration);
@@ -45,9 +45,51 @@ using namespace gui;
 		return correctMesh_ == getMeshName() && correctSound_ == getSoundName() && correctTexture_ == getTextureName();
 	}
 
-	void Plane::physics()
+	vector3d<f32> Plane::getPitch()
+	{
+		return pitch_;
+	}
+
+
+	void Plane::updatePosition(float time)
+	{
+		//position_ += velocity_ * time;
+		vector3d<f32> temp = getPosition();
+		temp += getVelocity() * time;
+		changePosition(temp);
+	}
+
+	void Plane::updateVelocity(float time)
+	{
+		//velocity_ = velocity_ + (acceleration_ * time);
+		vector3d<f32> temp = getVelocity();
+		temp = temp + (getAcceleration() * time);
+		changeVelocity(temp);
+	}
+
+	float forceOfGravity = 0.0f;
+
+	void Plane::updateAccelceration()
+	{
+		//acceleration_ = acceleration_ * (((forceOfGravity) ^ 2) * pitch_);
+		vector3d<f32> temp = getAcceleration();
+		temp = temp * ((forceOfGravity * forceOfGravity) * pitch_);
+		changeAcceleration(temp);
+	}
+
+	void Plane::updatePitch()
+	{
+		int angle = 0;
+		//angle needs to change based on user input
+	}
+
+	void Plane::physics(float time)
 	{
 		// Functions to create the physics for the objects
+		updatePitch();
+		updateAccelceration();
+		updateVelocity(time);
+		updatePosition(time);
 	}
 
 	Plane::~Plane()
