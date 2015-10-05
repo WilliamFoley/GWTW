@@ -51,12 +51,17 @@ private:
 // make a draw class for this 
 HUD::HUD(irr::IrrlichtDevice* device, video::IVideoDriver* driver, gui::IGUIEnvironment* guienv, IGUIFont* font)
 {
-
+	//Botton rectangle
 	driver->draw2DRectangle(video::SColor(150, 0, 0, 0), rect<s32>(40, 418, 600, 600));
 	driver->draw2DRectangle(video::SColor(150, 0, 0, 0), rect<s32>(0, 430, 40, 40));
-	driver->draw2DRectangle(video::SColor(150, 0, 0, 0), rect<s32>(0, 0, 40, 40));
+
+	driver->draw2DRectangle(video::SColor(150, 0, 0, 0), rect<s32>(40, 0, 600, 40));
+
+	//driver->draw2DRectangle(video::SColor(150, 0, 0, 0), rect<s32>(0, 0, 40, 40));
 	
 	u32 theTime = device->getTimer()->getTime();
+
+	
 	//device->getTimer()->getTime();
 	//if font is true 
 	if (font)
@@ -79,10 +84,13 @@ HUD::HUD(irr::IrrlichtDevice* device, video::IVideoDriver* driver, gui::IGUIEnvi
 	guienv->addImage(driver->getTexture("./media/missile_51216x16.png"), position2d<int>(525, 450));
 	guienv->addImage(driver->getTexture("./media/missile_51216x16.png"), position2d<int>(495, 450));
 
+	// Draws Power up Icon
+	guienv->addImage(driver->getTexture("./media/icon-power.png"), position2d<int>(285, 427));
+
 	
 
 	//Draw polygon
-	driver->draw2DPolygon(position2d<s32>(570, 70), 50, video::SColor(255, 0, 0, 0), 12);
+	driver->draw2DPolygon(position2d<s32>(570, 95), 50, video::SColor(255, 0, 0, 0), 12);
 	//driver->draw2DPolygon(position2d<s32>(200, 70), 500, video::SColor(255, 0, 0, 0), 4);
 	
 
