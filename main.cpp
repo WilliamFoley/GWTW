@@ -75,7 +75,7 @@ int main()
 		startTime = device->getTimer()->getTime();
 		//Detect movement and inputs
 		movement.detectInput();
-
+		//Begins the scene for the player...displays all the things.
 		driver->beginScene(true, true, SColor(100, 70, 70, 70));
 
 		smgr->drawAll();
