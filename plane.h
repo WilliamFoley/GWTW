@@ -65,7 +65,7 @@ private:
 	vector3d<f32> pitch_;
 
 	// These will eventually need to change to the correct path
-	const char* correctMesh_ = "C:/Users/Emma/Documents/Visual Studio 2013/Projects/irrlichtTest/irrlichtTest/media/testairplane.obj";
+	const char* correctMesh_ = ".../media/testairplane.obj";
 	const char* correctSound_ = "None";
-	const char* correctTexture_ = "C:/Users/Emma/Documents/Visual Studio 2013/Projects/irrlichtTest/irrlichtTest/media/paper3.png";
+	const char* correctTexture_ = ".../media/paper3.png";
 };
